@@ -108,8 +108,7 @@
   </div>
 
 <script>
-// AQUI VOCÊ EDITA: senha -> diálogo
-  const ENTRIES = {
+const ENTRIES = {
   "velho sal": {
     tag: "velhosal",
     text: "Ele irá acontecer."
@@ -160,12 +159,12 @@ function tryUnlock() {
   if (ENTRIES[raw]) {
     unlocked.push(raw);
     localStorage.setItem('deathrigger', JSON.stringify(unlocked));
-    statusEl.textContent = "ACESSO CONCEDIDO";
+    statusEl.textContent = "perfeito.";
     statusEl.className = "status ok";
     render();
     pwInput.value = "";
   } else {
-    statusEl.textContent = "SENHA INCORRETA";
+    statusEl.textContent = "não encontrei nada em meus registros.";
     statusEl.className = "status err";
   }
 }
