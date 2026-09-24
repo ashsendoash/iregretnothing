@@ -214,7 +214,19 @@ const ENTRIES = {
   "torre": { tag: "TORRE", text: "Ninguém subiu até o último andar. O cavaleiro continua lá, morto pelas mãos da lebre." },
   "towertown": { tag: "TOWERTOWN", text: "Cidade natal de Finn. Trata os errantes como se fossem menos do que gente." },
   "pedra baixa": { tag: "PEDRA BAIXA", text: "Clint promete reerguê-la, tijolo por tijolo — se ele mesmo não vier a ser o décimo segundo." },
-  "decimo terceiro": { tag: "REGISTRO ???", text: "ME AJUDE." }
+  "decimo terceiro": { tag: "REGISTRO ???", text: "ME AJUDE." },
+  "o trem": { tag: "O TREM", text: "Foi ele quem trouxe os Doze pra perto do Sal, todos no mesmo vagão, sem nenhum deles ter comprado passagem." },
+  "trem": { tag: "O TREM", text: "Foi ele quem trouxe os Doze pra perto do Sal, todos no mesmo vagão, sem nenhum deles ter comprado passagem." },
+  "olho morto": { tag: "OLHO MORTO", text: "Clint nunca erra um tiro desde que o gatilho despertou. Gatilhos carregam o desejo de quem morreu antes — a pergunta é o que Clint queria tanto assim." },
+  "tiro certo": { tag: "PROCURADO", text: "É assim que os cartazes chamam Clint. Recompensa por cada tiro que ele nunca erra." },
+  "executor": { tag: "PROCURADO", text: "O nome que os cartazes deram a Damião. Ninguém sabe dizer quantas execuções, exatamente." },
+  "pavio curto": { tag: "PROCURADO", text: "Ish, nos cartazes de procurado. Um apelido que ele ganhou antes de aprender a se controlar." },
+  "homem da lei": { tag: "PROCURADO", text: "Irônico, o nome que deram a Ícaro. Um fora da lei chamado assim por gente que nunca leu direito seu próprio cartaz." },
+  "cega olhos": { tag: "PROCURADO", text: "Cristine, nos papéis afixados pela cidade. Ninguém explica direito o que ela faz pra merecer o nome." },
+  "chocalho": { tag: "PROCURADO", text: "O apelido de Gideon nos cartazes. Soa inofensivo até alguém perguntar o motivo." },
+  "o bruto sem nome": { tag: "PROCURADO", text: "Elvis, procurado sob um nome que nem ele reconhece mais como seu." },
+  "bruto sem nome": { tag: "PROCURADO", text: "Elvis, procurado sob um nome que nem ele reconhece mais como seu." },
+  "o sussurro": { tag: "PROCURADO", text: "Edgar. O nome nos cartazes é o mesmo nome que ele usa pra descrever o que enxerga além dos outros." }
 };
 
 const pwInput = document.getElementById('pw');
@@ -261,6 +273,6 @@ function tryUnlock() {
 goBtn.addEventListener('click', tryUnlock);
 pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
 render();
-</script>
+  </script>
 </body>
 </html>
