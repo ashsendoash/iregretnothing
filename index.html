@@ -160,7 +160,7 @@ const goBtn = document.getElementById('go');
 const statusEl = document.getElementById('status');
 const logEl = document.getElementById('log');
 const emptyEl = document.getElementById('empty');
-let unlocked = JSON.parse(sessionStorage.getItem('deathrigger') || '[]');
+let unlocked = [];
 
 function render() {
   logEl.innerHTML = "";
@@ -186,7 +186,6 @@ function tryUnlock() {
   }
   if (ENTRIES[raw]) {
     unlocked.push(raw);
-    sessionStorage.setItem('deathrigger', JSON.stringify(unlocked));
     statusEl.textContent = "perfeito.";
     statusEl.className = "status ok";
     render();
