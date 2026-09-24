@@ -113,19 +113,19 @@
 <script>
 const ENTRIES = {
   "velho sal": {
-    tag: "velhosal",
-    text: "Ele irá acontecer."
+    tag: "I REGRET NOTHING",
+    text: "EU NÃO ME ARREPENDO DE NADA."
   },
   "forasteiro": {
-    tag: "REGISTRO 02",
+    tag: "REGISTRO 002",
     text: "Ah, sim. é o que o bando dos doze são. forasteiros."
   },
   "deathrigger": {
-    tag: "deathrigger",
+    tag: "REGISTRO ???",
     text: ". . ."
   },
-  "gatilhos": {
-    tag: "sobrenatural",
+  "gatilho": {
+    tag: "REGISTRO 003",
     text: "essas coisas nunca foram do nosso mundo. rituais? despertares? magia negra, tudo é magia negra. satanael deve ter envolvimento nisso."
   }
 };
@@ -135,7 +135,7 @@ const goBtn = document.getElementById('go');
 const statusEl = document.getElementById('status');
 const logEl = document.getElementById('log');
 const emptyEl = document.getElementById('empty');
-let unlocked = JSON.parse(localStorage.getItem('deathrigger') || '[]');
+let unlocked = JSON.parse(sessionStorage.getItem('deathrigger') || '[]');
 
 function render() {
   logEl.innerHTML = "";
