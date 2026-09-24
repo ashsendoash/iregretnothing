@@ -93,13 +93,13 @@
 <body>
   <div class="frame">
     <div class="titlebar">
-      <h1>DEATHRIGGER</h1>
+      <h1>DEATHRIGGER.</h1>
     </div>
     <div class="body-area">
-      <div class="prompt-line">Digite a senha para revelar o registro.</div>
+      <div class="prompt-line">nos diga o que você sabe.</div>
       <div class="input-row">
         <input type="text" id="pw" placeholder="senha...">
-        <button id="go">ABRIR</button>
+        <button id="go">INSERIR</button>
       </div>
       <div class="status" id="status"></div>
       <div class="log" id="log"></div>
@@ -110,15 +110,22 @@
 <script>
 // AQUI VOCÊ EDITA: senha -> diálogo
 const ENTRIES = {
-  "vermelho": {
-    tag: "REGISTRO 01",
-    text: "Escreva aqui a fala que aparece quando alguém digitar 'vermelho'."
+  "velho sal": {
+    tag: "velhosal",
+    text: "Ele irá acontecer."
   },
   "forasteiro": {
     tag: "REGISTRO 02",
-    text: "Outra fala aqui, ligada à senha 'forasteiro'."
+    text: "Ah, sim. é o que o bando dos doze são. forasteiros."
   }
-};
+},
+  "deathrigger":{
+  tag: "deathrigger",
+  text: ". . ."
+    },
+    "gatilhos":{
+      tag:"sobrenatural",
+      text:"essas coisas nunca foram do nosso mundo. rituais? despertares? magia negra, tudo é magia negra. satanael deve ter envolvimento nisso."
 
 const pwInput = document.getElementById('pw');
 const goBtn = document.getElementById('go');
