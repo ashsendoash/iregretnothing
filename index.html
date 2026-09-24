@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEATHRIGGER</title>
+<style>
+  body {
+    background: #1a120b;
+    color: #e8d9b5;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 40px;
+    margin: 0;
+  }
+  .frame {
+    width: 100%;
+    max-width: 520px;
+    border: 2px solid #7a5230;
+    background: #241a10;
+  }
+  .titlebar {
+    padding: 14px 16px;
+    border-bottom: 2px solid #7a5230;
+  }
+  .titlebar h1 {
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin: 0;
+    color: #c94b2c;
+  }
+  .body-area { padding: 18px 16px; }
+  .prompt-line {
+    font-size: 13px;
+    color: #a8916b;
+    margin-bottom: 14px;
+  }
+  .input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  input[type="text"] {
+    flex: 1;
+    background: #100b06;
+    border: 1px solid #7a5230;
+    color: #e8d9b5;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+  button {
+    background: #7a5230;
+    color: #e8d9b5;
+    border: 1px solid #c94b2c;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 0 16px;
+  }
+  .status {
+    min-height: 18px;
+    font-size: 12px;
+    margin-bottom: 18px;
+  }
+  .status.err { color: #c94b2c; }
+  .status.ok { color: #7aa25c; }
+  .entry {
+    border-left: 3px solid #c94b2c;
+    padding: 8px 12px;
+    background: rgba(201,75,44,0.05);
+    margin-bottom: 14px;
+  }
+  .entry .tag {
+    font-size: 10px;
+    color: #a8916b;
+    margin-bottom: 6px;
+  }
+  .entry .dialogue {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  .empty {
+    color: #a8916b;
+    font-size: 12px;
+    text-align: center;
+    padding: 20px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="titlebar">
+      <h1>DEATHRIGGER</h1>
+    </div>
+    <div class="body-area">
+      <div class="prompt-line">Digite a senha para revelar o registro.</div>
+      <div class="input-row">
+        <input type="text" id="pw" placeholder="senha...">
+        <button id="go">ABRIR</button>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="log" id="log"></div>
+      <div class="empty" id="empty">nenhum registro revelado ainda</div>
+    </div>
+  </div>
+
+<script>
+// AQUI VOCÊ EDITA: senha -> diálogo
+const ENTRIES = {
+  "vermelho": {
+    tag: "REGISTRO 01",
+    text: "Escreva aqui a fala que aparece quando alguém digitar 'vermelho'."
+  },
+  "forasteiro": {
+    tag: "REGISTRO 02",
+    text: "Outra fala aqui, ligada à senha 'forasteiro'."
+  }
+};
+
+const pwInput = document.getElementById('pw');
+const goBtn = document.getElementById('go');
+const statusEl = document.getElementById('status');
+const logEl = document.getElementById('log');
+const emptyEl = document.getElementById('empty');
+let unlocked = JSON.parse(localStorage.getItem('deathrigger') || '[]');
+
+function render() {
+  logEl.innerHTML = "";
+  if (unlocked.length === 0) { emptyEl.style.display = "block"; return; }
+  emptyEl.style.display = "none";
+  unlocked.forEach(key => {
+    const d = ENTRIES[key];
+    if (!d) return;
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.innerHTML = `<div class="tag">${d.tag}</div><div class="dialogue">${d.text}</div>`;
+    logEl.appendChild(div);
+  });
+}
+
+function tryUnlock() {
+  const raw = pwInput.value.trim().toLowerCase();
+  if (!raw) return;
+  if (unlocked.includes(raw)) {
+    statusEl.textContent = "JÁ REVELADO";
+    statusEl.className = "status ok";
+    return;
+  }
+  if (ENTRIES[raw]) {
+    unlocked.push(raw);
+    localStorage.setItem('deathrigger', JSON.stringify(unlocked));
+    statusEl.textContent = "ACESSO CONCEDIDO";
+    statusEl.className = "status ok";
+    render();
+    pwInput.value = "";
+  } else {
+    statusEl.textContent = "SENHA INCORRETA";
+    statusEl.className = "status err";
+  }
+}
+
+goBtn.addEventListener('click', tryUnlock);
+pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+render();
+</script>
+</body>
+</html>
